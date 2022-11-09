@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title><%= htmlWebpackPlugin.options.title %> - Bloqcoin</title>
+		<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+		<link rel="icon" type="image/svg" href="/favicon.svg">
+	</head>
+	<body>
+		<div class="container">
+			<section class="header">
+				<h2 class="title">Bloqcoin is an innovative cdn network and a new kind of storage.</h2>
+				
+				<a class="button" href="https://github.com/bloqifi/bloqcoin">Download</a>
+
+				<div class="column">
+					<div class="col-25">
+						<img src="<%=require('../../src/asset/feather.svg')%>" width="130" height="70" />
+						It is adapted from Bitcoin Core and other cryptocurrencies.
+					</div>
+					<div class="col-25">
+						<img src="<%=require('../../src/asset/pens.svg')%>" width="130" height="70" />
+						Allows anyone to operate a node in the Bloqcoin blockchain networks.
+					</div>
+					<div class="col-25">
+						<img src="<%=require('../../src/asset/watch.svg')%>" width="130" height="70" />
+						Bloqcoin Core is an open source and community driven software.
+					</div>
+				</div>
+
+				<p>Powered by <a href="https://www.bloqifi.com">Bloqifi</a></p>
+			</section>
+		</div>
+	</body>
+</html>

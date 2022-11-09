@@ -1,0 +1,42 @@
+{
+    "name": "www.bloqcoin.org",
+    "version": "0.0.1",
+    "description": "Bloqcoin is an innovative cdn network and a new kind of storage.",
+    "main": "bloqcoin.js",
+    "private": true,
+    "scripts": {
+        "start": "node bloqcoin.js",
+        "dev": "nodemon bloqcoin.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "webpack --watch --config webpack.dev.js",
+        "build": "webpack --config webpack.prod.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bloqifi/bloqcoin.org.git"
+    },
+    "author": "Kris Henriksen",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/bloqifi/bloqcoin.org/issues"
+    },
+    "homepage": "https://www.bloqcoin.org/",
+    "dependencies": {
+        "compression-webpack-plugin": "^10.0.0",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.1",
+        "mini-css-extract-plugin": "^2.6.1"
+    },
+    "devDependencies": {
+        "copy-webpack-plugin": "^11.0.0",
+        "css-loader": "^6.7.1",
+        "css-minimizer-webpack-plugin": "^4.2.2",
+        "dotenv-webpack": "^8.0.0",
+        "html-webpack-plugin": "^5.5.0",
+        "nodemon": "^2.0.19",
+        "style-loader": "^3.3.1",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0",
+        "webpack-merge": "^5.8.0"
+    }
+}
