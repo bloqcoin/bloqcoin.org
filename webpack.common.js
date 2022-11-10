@@ -20,7 +20,7 @@ const entry = {
 };
 
 const htmlPlugins = Object.keys(entry).map(function(key, index) {
-	let title = 'New kind of storage, backed by community-driven cryptocurrency';
+	let title = 'New kind of storage, incentivized by cryptoeconomics';
 
 	if (key !== 'index') {
 		title = `${key.replace(/_|-/g, ' ')}`;
