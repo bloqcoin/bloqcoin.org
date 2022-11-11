@@ -16,25 +16,25 @@ fetch('', {
 
 	jQuery('.reflow-table').reflowTable();
 
-	await Promise.all(json.map((block) => {
+	await Promise.all(json.map((transaction) => {
 
 		const tr = jQuery('<tr>');
-		
+
 		jQuery('<td>', {
-			text: block.height
+			text: transaction.address
 		}).appendTo(tr);
 
 		jQuery('<td>', {
-			text: block.merkleroot
+			text: transaction.txid
 		}).appendTo(tr);
 
 		jQuery('<td>', {
-			text: block.hash
+			text: transaction.confirmations
 		}).appendTo(tr);
 
 		jQuery('<td>', {
-			text: block.time
-		}).appendTo(tr);
+			text: transaction.time
+		}).appendTo(tr);		
 
 		jQuery('table tbody').append(tr);
 	}));

@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const fs = require('fs');
 
 const dotenv = require('dotenv-webpack');
 
@@ -10,14 +11,15 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 const entry = {
 	'index': path.join(__dirname, './src/js/index.js'),
-	'node-status': path.join(__dirname, './src/js/node-status.js'),
+	'status': path.join(__dirname, './src/js/status.js'),
 	'peers': path.join(__dirname, './src/js/peers.js'),
 	'blocks': path.join(__dirname, './src/js/blocks.js'),
-	'tx-stats': path.join(__dirname, './src/js/tx-stats.js'),
-	'mempool-summary': path.join(__dirname, './src/js/mempool-summary.js'),
-	'unconfirmed-tx': path.join(__dirname, './src/js/unconfirmed-tx.js'),
-	'mining-pools': path.join(__dirname, './src/js/mining-pools.js')
+	'stats': path.join(__dirname, './src/js/stats.js'),
+	'mempool': path.join(__dirname, './src/js/mempool.js'),
+	'unconfirmed': path.join(__dirname, './src/js/unconfirmed.js')
 };
+
+const footer = fs.readFileSync('./src/html/partial/footer.html').toString();
 
 const htmlPlugins = Object.keys(entry).map(function(key, index) {
 	let title = 'New kind of storage, incentivized by cryptoeconomics';
@@ -48,6 +50,9 @@ const htmlPlugins = Object.keys(entry).map(function(key, index) {
 			useShortDoctype: true,
             minifyCSS: true,
             minifyJS: true
+		},
+		partial: {
+			footer
 		},
 		inject: 'body',
 		scriptLoading: 'module'
@@ -87,6 +92,11 @@ module.exports = {
 				test: /\.css$/,
 				use: [MiniCssExtractPlugin.loader, 'css-loader']
 			},
+			{
+				test: /\.(eot|otf|ttf|woff|woff2)$/i,
+				exclude: path.resolve(__dirname, 'node_modules'),
+				type: 'asset/resource'
+			},			
 			{
 				test: /\.(png|jpe?g|gif|svg)$/i,
 				exclude: path.resolve(__dirname, 'node_modules'),

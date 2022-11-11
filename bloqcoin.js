@@ -6,6 +6,20 @@ const express = require('express');
 const expressStaticGzip = require('./middleware/compression.js');
 const app = express();
 
+/**
+ * Simple API
+ */
+['/status',
+ '/peers',
+ '/blocks',
+ '/stats',
+ '/mempool',
+ '/unconfirmed',
+].forEach(endpoint => {
+	const controller = require(`./controllers${endpoint}.js`);
+	app.post(endpoint, new controller().get);
+});
+
 app.get('/health', (req, res) => {
 	const os = require('os');
 	const avg_load = os.loadavg();

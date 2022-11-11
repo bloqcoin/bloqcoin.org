@@ -1,22 +1,37 @@
+@font-face {
+	font-family: 'Raleway';
+	font-weight: 300;
+	font-style: normal;
+	src: url('../font/raleway-light.eot'); /* IE9 Compat Modes */
+	src: local(''),
+		url('../font/raleway-light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('../font/raleway-light.woff') format('woff'), /* Modern Browsers */
+		url('../font/raleway-light.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('../font/raleway-light.svg#Raleway') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+	font-family: 'Raleway';
+	font-weight: 400;
+	font-style: normal;
+	src: url('../font/raleway-regular.eot'); /* IE9 Compat Modes */
+	src: local(''),
+		url('../font/raleway-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('../font/raleway-regular.woff') format('woff'), /* Modern Browsers */
+		url('../font/raleway-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('../font/raleway-regular.svg#Raleway') format('svg'); /* Legacy iOS */
+}
+
 html {
 	font-size: 62.5%;
 }
 
 body {
+	font-weight: 400;
 	font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
 	line-height: 1.6;
-	font-weight: 400;
 	font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #222;
-}
-
-b,
-strong {
-	font-weight: bold;
-}
-
-p {
-	margin-top: 0;
 }
 
 h1,
@@ -43,49 +58,40 @@ h3 {
 	line-height: 1.3;
 }
 
+p {
+	margin-top: 0;
+}
+
 img {
 	margin: 0 auto;
 	display: block;
 }
 
 .button {
-	display: inline-block;
-	height: 38px;
-	padding: 0 30px;
-	color: #555;
+	padding: 10px 30px;
 	text-align: center;
-	font-size: 11px;
-	font-weight: 600;
-	line-height: 38px;
-	letter-spacing: .1rem;
 	text-transform: uppercase;
 	text-decoration: none;
 	white-space: nowrap;
+	color: #555;
 	background-color: transparent;
+	font-weight: bold;
 	border-radius: 4px;
 	border: 1px solid #bbb;
+	font-size: 12px;
 	cursor: pointer;
-	box-sizing: border-box;
+	display: inline-block;
+	transition: all .1s ease-in 0s;
 }
 
 .button:hover {
-	color: #0FA0CE;
-}
-
-.container {
-	max-width: 800px;
-	margin: 0 auto;
-}
-
-.header {
-	margin-top: 10rem;
-	margin-bottom: 5rem;
-	text-align: center;
+	border-color: #0FA0CE;
+	color: white;
+	background-color: #0FA0CE;
 }
 
 div.column {
-	margin-top: 10rem;
-	margin-bottom: 10rem;
+	margin-top: 5rem;
 	flex-wrap: wrap;
 	gap: 2rem;
 	display: flex;
@@ -93,4 +99,16 @@ div.column {
 
 .col-25 {
 	flex: 1 1 25%;
+}
+
+header {
+	max-width: 800px;
+	margin: 10rem auto;
+	text-align: center;
+}
+
+main {
+	max-width: 800px;
+	margin: 0 auto;
+	text-align: center;
 }

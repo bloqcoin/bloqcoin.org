@@ -1,0 +1,103 @@
+/**
+ * yidas/jquery-reflow-table CSS style-sheet
+ * 
+ * @author  Nick Tsai <myintaer@gmail.com>
+ * @since   1.0.3
+ * @see     https://github.com/yidas/jquery-reflow-table
+ */
+
+/* Mobile Mode: table */
+table.reflow-table.reflow-table-mobile-mode {
+	width: 100% !important;
+}
+
+/* Mobile Mode: Hide thead & tfoot */
+.reflow-table.reflow-table-mobile-mode thead, .reflow-table.reflow-table-mobile-mode tfoot {
+	display: none;
+}
+
+/* Mobile Mode: Mobile mode for td */
+.reflow-table.reflow-table-mobile-mode td {
+	/* overflow: hidden; */
+	width: 100%;
+	display: block;
+}
+
+/* Mobile Mode: Dynamically fulfilling pseudo content */
+.reflow-table.reflow-table-mobile-mode td:before {
+	content: attr(data-th);
+}
+
+/* Pseudo pre-style */
+.reflow-table td:before {
+	display: inline-block;
+	font-weight: bold;
+}
+
+/* Width Ratio style-sheet */
+.reflow-table.reflow-table-w-15 td:before {
+	min-width: 15%;
+}
+.reflow-table.reflow-table-w-20 td:before {
+	min-width: 20%;
+}
+.reflow-table.reflow-table-w-25 td:before {
+	min-width: 25%;
+}
+.reflow-table.reflow-table-w-30 td:before {
+	min-width: 30%;
+}
+.reflow-table.reflow-table-w-40 td:before {
+	min-width: 40%;
+}
+.reflow-table.reflow-table-w-50 td:before {
+	min-width: 50%;
+}
+
+/* Width Size style-sheet */
+.reflow-table.reflow-table-xs td:before {
+	min-width: 100px;
+}
+.reflow-table.reflow-table-sm td:before {
+	min-width: 150px;
+}
+.reflow-table.reflow-table-md td:before {
+	min-width: 200px;
+}
+.reflow-table.reflow-table-lg td:before {
+	min-width: 250px;
+}
+
+/* styling */
+table {
+	width: 100%;
+	margin: 0 auto;
+	font-weight: normal;
+	border: 1px solid #e6e8eb;
+	border-radius: 4px;
+	border-spacing: 0;
+}
+table th {
+	padding: 10px;
+	border-bottom: 1px solid #e6e8eb;
+	color: #818792;
+    background: #ededed;
+	text-align: left;
+}
+
+table td {
+	margin: 0;
+	padding: 10px;
+	background: white;
+	border-bottom: 1px solid #e6e8eb;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+table td:first-child {
+	color: #818792;
+}
+
+table td:last-child {
+	color: #235c46;
+	background-color: #d9f8e6;
+}
