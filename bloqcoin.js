@@ -6,6 +6,12 @@ const express = require('express');
 const expressStaticGzip = require('./middleware/compression.js');
 const app = express();
 
+// made sure node do not quit
+process.on('uncaughtException', function (err) {
+	console.error(err);
+	console.log('Node NOT Exiting..');
+});
+
 /**
  * Simple API
  */
