@@ -15,17 +15,17 @@ class Controller {
 
 	get = async function(req, res) {
 
-		const data = await self.getNetworkHashps();
+		const data = await self.getNetworkInfo();
 
 		// 200 OK
 		return res.status(200).json(data);
 	}
 
-	getNetworkHashps = function() {
+	getNetworkInfo = function() {
 
 		return new Promise((resolve, reject) => {
 
-			self.daemon.getnetworkhashps(function(err, data) {
+			self.daemon.getnetworkinfo(function(err, data) {
 
 				if (err) {
 

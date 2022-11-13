@@ -2,7 +2,7 @@
 
 const commands = module.exports.commands = [
 	// status
-	'getmemoryinfo',
+	'getnetworkhashps',
 
 	// peers
 	'getpeerinfo',
