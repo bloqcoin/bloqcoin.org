@@ -9,7 +9,7 @@ Bloqcoin pool can have as many miners connect as you wish. Each miner can be con
 pool rewards address. varDiff is optional and will only be used for the ports you configure it for.
 
 "ports": {
-    3032: { // The port for miners to connect to via Stratum Protocol
+    "3032": { // The port for miners to connect to via Stratum Protocol
         "diff": 32, // The pool difficulty for this port
 
         // Variable difficulty is a feature that will automatically adjust difficulty for
@@ -22,7 +22,7 @@ pool rewards address. varDiff is optional and will only be used for the ports yo
             "variancePercent": 30 // Allow time to very this % from target without retargeting
         }
     },
-    3256: { // Another port for miners to connect to, this port does not use varDiff
+    "3256": { // Another port for miners to connect to, this port does not use varDiff
         "diff": 256 // The pool difficulty
     }
 }
