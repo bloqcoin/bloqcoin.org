@@ -123,21 +123,20 @@ const pool = Stratum.createPool({
        intensive than blocknotify script). It requires the additional field "peerMagic" in
        the coin config. */
     "p2p": {
-        "enabled": true,
+		"enabled": true,
 
-        /* Host for daemon */
-        "host": process.env.BLOQCOIN_HOST,
+		/* Host for daemon */
+		"host": process.env.BLOQCOIN_HOST,
 
-        /* Port configured for daemon (this is the actual peer port not RPC port) */
-        "port": process.env.BLOQCOIN_PORT_P2P,
+		/* Port configured for daemon (this is the actual peer port not RPC port) */
+		"port": process.env.BLOQCOIN_PORT_P2P,
 
-        /* If your coin daemon is new enough (i.e. not a shitcoin) then it will support a p2p
-           feature that prevents the daemon from spamming our peer node with unnecessary
-           transaction data. Assume its supported but if you have problems try disabling it. */
-        "disableTransactions": true,
+		/* If your coin daemon is new enough (i.e. not a shitcoin) then it will support a p2p
+			feature that prevents the daemon from spamming our peer node with unnecessary
+			transaction data. Assume its supported but if you have problems try disabling it. */
+		"disableTransactions": true,
 
 		"magic": "f9beb4d9"
-
     }
 
 }, function(ip, workerName, password, callback){ //stratum authorization function
