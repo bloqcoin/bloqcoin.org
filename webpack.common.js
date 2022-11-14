@@ -12,12 +12,10 @@ const CopyPlugin = require('copy-webpack-plugin');
 const entry = {
 	'index': path.join(__dirname, './src/js/index.js'),
 	'howto': path.join(__dirname, './src/js/howto.js'),
-	'status': path.join(__dirname, './src/js/status.js'),
+	'hash-rate': path.join(__dirname, './src/js/hash-rate.js'),
 	'peers': path.join(__dirname, './src/js/peers.js'),
 	'blocks': path.join(__dirname, './src/js/blocks.js'),
-	'stats': path.join(__dirname, './src/js/stats.js'),
-	'mempool': path.join(__dirname, './src/js/mempool.js'),
-	'unconfirmed': path.join(__dirname, './src/js/unconfirmed.js')
+	'pool': path.join(__dirname, './src/js/pool.js')
 };
 
 const footer = fs.readFileSync('./src/html/partial/footer.html').toString();

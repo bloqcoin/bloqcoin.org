@@ -67,6 +67,11 @@ img {
 	display: block;
 }
 
+pre {
+	max-width: 800px;
+	margin: 5rem auto;
+}
+
 hr { 
 	margin-top: 40px;
 	margin-bottom: 40px;
@@ -106,6 +111,10 @@ div.column {
 	flex-wrap: wrap;
 	gap: 2rem;
 	display: flex;
+}
+
+header div.column {
+	margin-top: 10rem;
 }
 
 .col-25 {

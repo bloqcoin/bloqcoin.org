@@ -13,7 +13,7 @@ fetch('', {
 .then(response => response.json())
 .then(json => {
 
-	document.querySelector('pre').innerHTML = formatHighlight(json, {
+	document.querySelector('h1').innerHTML = formatHighlight(json, {
 		keyColor: 'black',
 		numberColor: 'blue',
 		stringColor: '#0B7500',

@@ -15,12 +15,9 @@ process.on('uncaughtException', function (err) {
 /**
  * Simple API
  */
-['/status',
+['/hash-rate',
  '/peers',
- '/blocks',
- '/stats',
- '/mempool',
- '/unconfirmed',
+ '/blocks'
 ].forEach(endpoint => {
 	const controller = require(`./controllers${endpoint}.js`);
 	app.post(endpoint, new controller().get);
