@@ -11,6 +11,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 const entry = {
 	'index': path.join(__dirname, './src/js/index.js'),
+	'howto': path.join(__dirname, './src/js/howto.js'),
 	'status': path.join(__dirname, './src/js/status.js'),
 	'peers': path.join(__dirname, './src/js/peers.js'),
 	'blocks': path.join(__dirname, './src/js/blocks.js'),
