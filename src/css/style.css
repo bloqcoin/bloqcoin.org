@@ -127,6 +127,10 @@ header {
 	text-align: center;
 }
 
+header#hash-rate {
+	font-family: Gilroy;
+}
+
 main {
 	max-width: 800px;
 	margin: 0 auto;

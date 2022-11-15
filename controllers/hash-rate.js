@@ -15,17 +15,47 @@ class Controller {
 
 	get = async function(req, res) {
 
-		const data = await self.getNetworkHashps();
+		// get the previous block
+		const height = (await self.getBlockCount() - 1);
+		const kHps = await self.getNetworkHashps(height);
+
+		/*
+		kH/s (kilo hashes per second) = 1000 H/s
+		MH/s (Mega hashes per second) = 1,000,000 H/s
+		GH/s (giga hashes per second) = 1,000,000,000 H/s
+		TH/s (tera hashes per second) = 1,000,000,000,000 H/s
+		*/
 
 		// 200 OK
-		return res.status(200).json(data);
+		return res.status(200).json({
+			kH: kHps,
+			MH: (kHps / 1000000),
+			GH: (kHps / 1000000000),
+			TH: (kHps / 1000000000000)
+		});
 	}
 
-	getNetworkHashps = function() {
+	getBlockCount = () => {
 
 		return new Promise((resolve, reject) => {
 
-			self.daemon.getnetworkhashps(function(err, data) {
+			self.daemon.getblockcount(function(err, data) {
+
+				if (err) {
+
+					reject(err);
+				}
+
+				resolve(data);
+			});
+		});
+	}
+
+	getNetworkHashps = function(height) {
+
+		return new Promise((resolve, reject) => {
+
+			self.daemon.getnetworkhashps(height, function(err, data) {
 
 				if (err) {
 

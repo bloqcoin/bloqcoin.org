@@ -1,7 +1,7 @@
 'use strict';
 
 const commands = module.exports.commands = [
-	// status
+	// hash-rate
 	'getnetworkhashps',
 
 	// peers
@@ -10,16 +10,7 @@ const commands = module.exports.commands = [
 	// blocks
 	'getblockcount',
 	'getblockhash',
-	'getblockheader',
-
-	// stats
-	'getnetworkinfo',
-
-	// mempool
-	'getmempoolinfo',
-
-	// unconfirmed
-	'listtransactions'
+	'getblockheader'
 ]
 
 module.exports.isCommand = function(command) {
