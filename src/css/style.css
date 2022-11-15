@@ -135,6 +135,12 @@ header#hash-rate table th {
 	text-align: center;
 }
 
+@media screen and (max-width: 965px) {
+	header#hash-rate table th {
+		text-align: left;
+	}
+}
+
 main {
 	max-width: 800px;
 	margin: 0 auto;
