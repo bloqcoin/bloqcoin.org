@@ -2,6 +2,9 @@
 
 require('dotenv').config();
 
+// Library for setting up websocket to frontend clients
+const WebSocket = require('ws');
+
 const Stratum = require('./middleware/stratum-pool');
 const pool = Stratum.createPool({
 
@@ -174,21 +177,46 @@ const pool = Stratum.createPool({
 
     error: 'low share difficulty' //set if share is rejected for some reason
 */
-pool.on('share', function(isValidShare, isValidBlock, data){
+pool.on('share', function(isValidShare, isValidBlock, data) {
 
-    if (isValidBlock)
-        console.log('Block found');
-    else if (isValidShare)
-        console.log('Valid share submitted');
-    else if (data.blockHash)
-        console.log('We thought a block was found but it was rejected by the daemon');
-    else
-        console.log('Invalid share submitted')
+	const obj = {};
+	obj.data = data;
+
+    if (isValidBlock) {
+
+		obj.message = 'Block found';
+        console.log(obj.message);
+	}
+    else if (isValidShare) {
+
+		obj.message = 'Valid share submitted';
+        console.log(obj.message);
+	}
+    else if (data.blockHash) {
+
+		obj.message = 'We thought a block was found but it was rejected by the daemon';
+        console.log(obj.message);
+	}
+    else {
+
+		obj.message = 'Invalid share submitted';
+        console.log(obj.message);
+	}
 
     console.log('share data: ' + JSON.stringify(data));
+
+	// open socket connection to frontend
+	const socket = new WebSocket(`${process.env.WSS_URI_INTERNAL}/pool`);
+
+	socket.onopen = async (e) => {
+
+		console.log('[open] Connection established');
+
+		socket.send(JSON.stringify(obj));
+
+		socket.close();
+	};
 });
-
-
 
 /*
 'severity': can be 'debug', 'warning', 'error'

@@ -2,6 +2,31 @@
 
 import '../css/style.css';
 
+const wss = new WebSocket(`${process.env.WSS_URI_EXTERNAL}/pool`);
+wss.onmessage = function(e) {
+
+	if (e.data instanceof Blob) {
+
+		const reader = new FileReader();
+
+		reader.onload = () => {
+
+			notifyFrontend(JSON.parse(reader.result));
+		};
+
+		reader.readAsText(e.data);
+	}
+	else {
+
+		notifyFrontend(JSON.parse(e.data));
+	}
+};
+
+notifyFrontend = function(obj) {
+
+	document.querySelector('h2').innerHTML = obj.data;
+}
+
 fetch('', {
 	method: 'POST',
 	headers: {
