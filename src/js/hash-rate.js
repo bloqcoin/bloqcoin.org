@@ -1,11 +1,31 @@
 'use strict';
 
 import '../css/style.css';
+import '../css/table.css';
+
+import 'jquery-reflow-table';
 
 function notifyFrontend(obj) {
 
-	const h3 = document.querySelector('h3');
-	h3.innerHTML = obj.message.concat(', ', h3.innerHTML);
+	jQuery('.reflow-table').reflowTable();
+
+	const tr = jQuery('<tr>');
+		
+	jQuery('<td>', {
+		text: obj.data.height
+	}).appendTo(tr);
+
+	jQuery('<td>', {
+		text: obj.message
+	}).appendTo(tr);
+
+	jQuery('<td>', {
+		text: obj.data.difficulty
+	}).appendTo(tr);
+
+	jQuery('table tbody').prepend(tr);
+
+	jQuery('.reflow-table').reflowTable('update');
 }
 
 const wss = new WebSocket(`${process.env.WSS_URI_EXTERNAL}/pool`);
