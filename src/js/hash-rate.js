@@ -5,12 +5,7 @@ import '../css/style.css';
 function notifyFrontend(obj) {
 
 	const h3 = document.querySelector('h3');
-	h3.innerHTML = obj.message;
-
-	setTimeout(function() {
-
-		h3.innerHTML = '&nbsp;';
-	}, 4000);
+	h3.innerHTML = obj.message.concat(', ', h3.innerHTML);
 }
 
 const wss = new WebSocket(`${process.env.WSS_URI_EXTERNAL}/pool`);
