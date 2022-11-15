@@ -4,7 +4,7 @@ import '../css/style.css';
 
 function notifyFrontend(obj) {
 
-	document.querySelector('h2').innerHTML = obj.data;
+	document.querySelector('h3').innerHTML = obj.data;
 }
 
 const wss = new WebSocket(`${process.env.WSS_URI_EXTERNAL}/pool`);

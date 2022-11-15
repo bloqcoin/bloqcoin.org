@@ -180,7 +180,15 @@ const pool = Stratum.createPool({
 pool.on('share', function(isValidShare, isValidBlock, data) {
 
 	const obj = {};
-	obj.data = data;
+
+	obj.data = {
+		height: data.height, //block height
+		blockReward: data.blockReward, //the number of satoshis received as payment for solving this block
+		difficulty: data.difficulty, //stratum worker difficulty
+		shareDiff: data.shareDiff, //actual difficulty of the share
+		blockDiff: data.blockDiff, //block difficulty adjusted for share padding
+		blockDiffActual: data.blockDiffActual //actual difficulty for this block
+	};
 
     if (isValidBlock) {
 
