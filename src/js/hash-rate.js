@@ -4,7 +4,13 @@ import '../css/style.css';
 
 function notifyFrontend(obj) {
 
-	document.querySelector('h3').innerHTML = obj.data;
+	const h3 = document.querySelector('h3');
+	h3.innerHTML = obj.message;
+
+	setTimeout(function() {
+
+		h3.innerHTML = '&nbsp;';
+	}, 4000);
 }
 
 const wss = new WebSocket(`${process.env.WSS_URI_EXTERNAL}/pool`);
@@ -27,6 +33,11 @@ wss.onmessage = function(e) {
 	}
 };
 
+/**
+ * We estimate the hashrate using the network difficulty
+ * and the number of blocks found by each entity during a given period.
+ * At the time of coding, the period we use is 100 blocks,
+ */
 fetch('', {
 	method: 'POST',
 	headers: {
