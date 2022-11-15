@@ -26,6 +26,8 @@ function notifyFrontend(obj) {
 	jQuery('table tbody').prepend(tr);
 
 	jQuery('.reflow-table').reflowTable('update');
+
+	getNetworkHashps();
 }
 
 const wss = new WebSocket(`${process.env.WSS_URI_EXTERNAL}/pool`);
@@ -53,21 +55,25 @@ wss.onmessage = function(e) {
  * and the number of blocks found by each entity during a given period.
  * At the time of coding, the period we use is 100 blocks,
  */
-fetch('', {
-	method: 'POST',
-	headers: {
-		'Content-Type': 'application/json'
-	}
-})
-.then(response => response.json())
-.then(json => {
+function getNetworkHashps() {
+	fetch('', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+	.then(response => response.json())
+	.then(json => {
 
-	document.querySelector('h1').innerHTML = (Math.round(json.GH * 100) / 100).toFixed(2);
-})
-.catch(error => {
+		document.querySelector('h1').innerHTML = (Math.round(json.GH * 100) / 100).toFixed(2);
+	})
+	.catch(error => {
 
-	console.log(error);
-});
+		console.log(error);
+	});
+}
+
+getNetworkHashps();
 
 // get rate for Bloqcoin in EUR
 fetch('https://api.bloqifi.com/v0/rates/BLOQ/EUR', {
@@ -78,8 +84,6 @@ fetch('https://api.bloqifi.com/v0/rates/BLOQ/EUR', {
 })
 .then(response => response.json())
 .then(json => {
-
-	console.log(json)
 
 	document.querySelector('h2').innerHTML = `${json.rate} EUR`;
 })
