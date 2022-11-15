@@ -31,7 +31,7 @@ class Controller {
 		// 200 OK
 		return res.status(200).json({
 			kH: kHps,
-			GH: (kHps / 1000000)
+			GH: (kHps / 10000000)
 		});
 	}
 
