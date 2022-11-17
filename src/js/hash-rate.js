@@ -23,6 +23,16 @@ function notifyFrontend(obj) {
 		text: obj.data.difficulty
 	}).appendTo(tr);
 
+	jQuery('<td>', {
+		text: new Date().toLocaleDateString([], {
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit',
+			hour: '2-digit',
+			minute:'2-digit'
+		})
+	}).appendTo(tr);
+
 	jQuery('table tbody').prepend(tr);
 
 	jQuery('.reflow-table').reflowTable('update');

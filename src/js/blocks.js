@@ -18,8 +18,6 @@ fetch('', {
 
 	await Promise.all(json.map((block) => {
 
-		const toDateString = new Date(block.time * 1000).toDateString();
-
 		const tr = jQuery('<tr>');
 		
 		jQuery('<td>', {
@@ -35,7 +33,13 @@ fetch('', {
 		}).appendTo(tr);
 
 		jQuery('<td>', {
-			text: toDateString
+			text: new Date(block.time * 1000).toLocaleDateString([], {
+				year: 'numeric',
+				month: '2-digit',
+				day: '2-digit',
+				hour: '2-digit',
+				minute:'2-digit'
+			})
 		}).appendTo(tr);
 
 		jQuery('table tbody').append(tr);
