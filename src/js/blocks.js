@@ -18,6 +18,8 @@ fetch('', {
 
 	await Promise.all(json.map((block) => {
 
+		const toDateString = new Date(block.time * 1000).toDateString();
+
 		const tr = jQuery('<tr>');
 		
 		jQuery('<td>', {
@@ -33,7 +35,7 @@ fetch('', {
 		}).appendTo(tr);
 
 		jQuery('<td>', {
-			text: block.time
+			text: toDateString
 		}).appendTo(tr);
 
 		jQuery('table tbody').append(tr);
