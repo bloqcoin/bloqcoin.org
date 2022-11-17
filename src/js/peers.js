@@ -18,6 +18,8 @@ fetch('', {
 
 	await Promise.all(json.map((peer) => {
 
+		const ping = (peer.pingtime * 1000);
+
 		const tr = jQuery('<tr>');
 		
 		jQuery('<td>', {
@@ -29,7 +31,7 @@ fetch('', {
 		}).appendTo(tr);
 
 		jQuery('<td>', {
-			text: peer.pingtime
+			text: `${ping} ms`
 		}).appendTo(tr);
 
 		jQuery('table tbody').append(tr);
