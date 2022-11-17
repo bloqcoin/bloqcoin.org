@@ -91,6 +91,7 @@ table td {
 	background: white;
 	border-bottom: 1px solid #e6e8eb;
 	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
 }
 
 table td:first-child {

@@ -132,7 +132,8 @@ header#hash-rate {
 }
 
 @media screen and (min-width: 965px) {
-	header#hash-rate table th {
+	header#hash-rate table th,
+	header#hash-rate table td {
 		text-align: center;
 	}
 }
