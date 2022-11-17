@@ -18,7 +18,7 @@ fetch('', {
 
 	await Promise.all(json.map((peer) => {
 
-		const ping = (peer.pingtime * 1000);
+		const ping = (Math.round((peer.pingtime * 1000) * 100) / 100).toFixed(3);
 
 		const tr = jQuery('<tr>');
 		
