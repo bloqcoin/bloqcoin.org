@@ -131,13 +131,9 @@ header#hash-rate {
 	font-family: Gilroy;
 }
 
-header#hash-rate table th {
-	text-align: center;
-}
-
-@media screen and (max-width: 965px) {
+@media screen and (min-width: 965px) {
 	header#hash-rate table th {
-		text-align: left;
+		text-align: center;
 	}
 }
 
