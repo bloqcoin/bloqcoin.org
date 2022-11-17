@@ -27,7 +27,7 @@ class Controller {
 
 		const blockCount = await self.getBlockCount();
 
-		for (let i = blockCount; i >= (blockCount - 10); i--) {
+		for (let i = blockCount; i >= (blockCount - parseInt(process.env.BLOCK_COUNT)); i--) {
 
 			const blockHash = await self.getBlockHash(i);
 
