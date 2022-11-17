@@ -17,9 +17,9 @@ class Controller {
 
 		// get the previous block
 		const height = await self.getBlockCount();
-		let kHps = await self.getNetworkHashps(height);
 
-		kHps = (kHps * 1000);
+		// calculate from previous block
+		let kHps = await self.getNetworkHashps((height - 1));
 
 		/*
 		kH/s (kilo hashes per second) = 1000 H/s
@@ -30,8 +30,7 @@ class Controller {
 
 		// 200 OK
 		return res.status(200).json({
-			kH: kHps,
-			GH: (kHps / 10000000)
+			kHps: kHps
 		});
 	}
 

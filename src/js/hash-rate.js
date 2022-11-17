@@ -65,7 +65,7 @@ function getNetworkHashps() {
 	.then(response => response.json())
 	.then(json => {
 
-		document.querySelector('h1').innerHTML = (Math.round(json.GH * 100) / 100).toFixed(2);
+		document.querySelector('h1').innerHTML = (Math.round((json.kHps / 100000) * 100) / 100).toFixed(2);
 	})
 	.catch(error => {
 
