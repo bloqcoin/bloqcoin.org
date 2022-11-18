@@ -89,7 +89,7 @@ const pool = Stratum.createPool({
 	 */
 	"ports": {
 		[process.env.POOL_PORT]: { // a port for your miners to connect to
-			"diff": 16, // the pool difficulty for this port
+			"diff": 35, // the pool difficulty for this port
 
 			/**
 			 * Variable difficulty is a feature that will automatically adjust difficulty for
