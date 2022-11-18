@@ -12,6 +12,7 @@ const pool = Stratum.createPool({
 		"name": "Bloqcoin",
 		"symbol": "BLOQ",
 		"algorithm": "sha256",
+		"chainStartTime": 1668359165,
 		"nValue": 1024, //optional - defaults to 1024
 		"rValue": 1, //optional - defaults to 1
 		"txMessages": false, //optional - defaults to false,
@@ -29,18 +30,11 @@ const pool = Stratum.createPool({
 	// address to where block rewards are given
 	"address": process.env.REWARDS_ADDRESS,
 
-	/**
-	 * Block rewards go to the configured pool wallet address to later be paid out to miners,
-	 * except for a percentage that can go to, for examples, pool operator(s) as pool fees or
-	 * or to donations address. Addresses or hashed public keys can be used. Here is an example
-	 * of rewards going to the main pool op, a pool co-owner, and NOMP donation.
-	 */
-	"rewardRecipients": {
-		[process.env.REWARDS_ADDRESS]: 1.5, // 1.5% goes to pool op
-	},
-
 	// how often to poll RPC daemons for new blocks, in milliseconds
 	"blockRefreshInterval": 1000,
+
+    // how many milliseconds should have passed before new block transactions will trigger a new job broadcast.
+	"txRefreshInterval": 20000,
 
 	/**
 	 * Some miner apps will consider the pool dead/offline if it doesn't receive anything new jobs
@@ -53,13 +47,20 @@ const pool = Stratum.createPool({
 	 * Some attackers will create thousands of workers that use up all available socket connections,
 	 * usually the workers are zombies and don't submit shares after connecting. This features
 	 * detects those and disconnects them.
-	 * 
 	 * Remove workers that haven't been in contact for this many seconds
 	 */
 	"connectionTimeout": 600,
 
 	// Sometimes you want the block hashes even for shares that aren't block candidates.
 	"emitInvalidBlockHashes": false,
+
+	/**
+	 * We use proper maximum algorithm difficulties found in the coin daemon source code. Most
+	 * miners/pools that deal with scrypt use a guesstimated one that is about 5.86% off from the
+	 * actual one. So here we can set a tolerable threshold for if a share is slightly too low
+	 * due to mining apps using incorrect max diffs and this pool using correct max diffs.
+	 */
+	"shareVariancePercent": 10,
 
 	/**
 	 * Enable for client IP addresses to be detected when using a load balancer with TCP proxy
@@ -147,6 +148,13 @@ const pool = Stratum.createPool({
 		 * transaction data. Assume its supported but if you have problems try disabling it.
 		 */
 		"disableTransactions": true,
+
+		/**
+		 * Magic value is different for main/testnet and for each coin. It is found in the daemon
+		 * source code as the pchMessageStart variable.
+		 * For example, litecoin mainnet magic: http://git.io/Bi8YFw
+		 * And for litecoin testnet magic: http://git.io/NXBYJA
+		 */
 		"magic": "f9beb4d9"
 	}
 }, function(ip, workerName, password, callback) { // stratum authorization function
