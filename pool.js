@@ -124,12 +124,6 @@ const pool = Stratum.createPool({
 		"port": process.env.BLOQCOIN_PORT,
 		"user": process.env.BLOQCOIN_USER,
 		"password": process.env.BLOQCOIN_PASS
-	},
-	{
-		"host": process.env.BLOQCOIN_BACKUP_HOST,
-		"port": process.env.BLOQCOIN_BACKUP_PORT,
-		"user": process.env.BLOQCOIN_BACKUP_USER,
-		"password": process.env.BLOQCOIN_BACKUP_PASS
 	}],
 
 	/**
