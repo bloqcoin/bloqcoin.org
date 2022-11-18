@@ -242,27 +242,6 @@ pool.on('share', function(isValidShare, isValidBlock, data) {
  */
 pool.on('log', function(severity, logKey, logText) {
 
-	const obj = {};
-
-	obj.data = {
-		severity: severity,
-		logKey: logKey
-	};
-
-	obj.message = logText;
-
-	// open socket connection to frontend
-	const socket = new WebSocket(`${process.env.WSS_URI_INTERNAL}/pool`);
-
-	socket.onopen = async (e) => {
-
-		console.log('[open] Connection established');
-
-		socket.send(JSON.stringify(obj));
-
-		socket.close();
-	};
-
 	console.log(severity + ': ' + '[' + logKey + '] ' + logText);
 });
 

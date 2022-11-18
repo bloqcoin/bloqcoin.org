@@ -7,48 +7,40 @@ import 'jquery-reflow-table';
 
 function notifyFrontend(obj) {
 
-	if (obj.data.height) {
+	jQuery('.reflow-table').reflowTable();
 
-		jQuery('.reflow-table').reflowTable();
+	const tr = jQuery('<tr>');
+		
+	jQuery('<td>', {
+		text: obj.data.height
+	}).appendTo(tr);
 
-		const tr = jQuery('<tr>');
-			
-		jQuery('<td>', {
-			text: obj.data.height
-		}).appendTo(tr);
+	jQuery('<td>', {
+		text: obj.message
+	}).appendTo(tr);
 
-		jQuery('<td>', {
-			text: obj.message
-		}).appendTo(tr);
+	jQuery('<td>', {
+		text: obj.data.difficulty
+	}).appendTo(tr);
 
-		jQuery('<td>', {
-			text: obj.data.difficulty
-		}).appendTo(tr);
+	jQuery('<td>', {
+		text: new Date().toLocaleDateString([], {
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit',
+			hour: '2-digit',
+			minute:'2-digit'
+		})
+	}).appendTo(tr);
 
-		jQuery('<td>', {
-			text: new Date().toLocaleDateString([], {
-				year: 'numeric',
-				month: '2-digit',
-				day: '2-digit',
-				hour: '2-digit',
-				minute:'2-digit'
-			})
-		}).appendTo(tr);
+	jQuery('table tbody').prepend(tr);
 
-		jQuery('table tbody').prepend(tr);
+	jQuery('.reflow-table').reflowTable('update');
 
-		jQuery('.reflow-table').reflowTable('update');
-
-		// set hash rate
-		const hashRate = document.querySelector('h1');
-		hashRate.innerHTML = obj.data.hashrate;
-		hashRate.classList.remove('hash-rate');
-	}
-
-	if (obj.data.severity) {
-
-		console.log(obj);
-	}
+	// set hash rate
+	const hashRate = document.querySelector('h1');
+	hashRate.innerHTML = obj.data.hashrate;
+	hashRate.classList.remove('hash-rate');
 }
 
 const wss = new WebSocket(`${process.env.WSS_URI_EXTERNAL}/pool`);
