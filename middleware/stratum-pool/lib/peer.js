@@ -44,8 +44,6 @@ var readFlowingBytes = function (stream, amount, preRead, callback) {
 
 var Peer = module.exports = function (options) {
 
-	console.log(options.p2p.magic);
-
     var _this = this;
     var client;
     var magic = new Buffer(options.p2p.magic, 'hex');

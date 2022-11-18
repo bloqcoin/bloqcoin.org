@@ -133,7 +133,7 @@ Client.prototype = {
 
 	auth: function(user, pass) {
         if (user && pass) {
-            var authString = ('Basic ') + new Buffer.from(user+':'+pass).toString('base64');
+            var authString = ('Basic ') + Buffer.from(user+':'+pass).toString('base64');
             this.opts.headers['Authorization'] = authString
         }
       return this
