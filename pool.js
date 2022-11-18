@@ -175,7 +175,6 @@ const pool = Stratum.createPool({
     blockDiff: 3349, //block difficulty adjusted for share padding
     blockDiffActual: 3349 //actual difficulty for this block
 
-
     //AKA the block solution - set if block was found
     blockHash: '110c0447171ad819dd181216d5d80f41e9218e25d833a2789cb8ba289a52eee4',
 
