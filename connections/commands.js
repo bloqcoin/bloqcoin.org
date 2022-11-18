@@ -1,9 +1,6 @@
 'use strict';
 
 const commands = module.exports.commands = [
-	// hash-rate
-	'getnetworkhashps',
-
 	// peers
 	'getpeerinfo',
 

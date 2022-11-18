@@ -6,6 +6,7 @@ require('dotenv').config();
 const WebSocket = require('ws');
 
 const Stratum = require('./middleware/stratum-pool');
+const util = require('./middleware/stratum-pool/lib/util.js');
 const pool = Stratum.createPool({
 	"coin": {
 		"name": "Bloqcoin",
@@ -196,7 +197,8 @@ pool.on('share', function(isValidShare, isValidBlock, data) {
 		difficulty: data.difficulty, // stratum worker difficulty
 		shareDiff: data.shareDiff, // actual difficulty of the share
 		blockDiff: data.blockDiff, // block difficulty adjusted for share padding
-		blockDiffActual: data.blockDiffActual // actual difficulty for this block
+		blockDiffActual: data.blockDiffActual, // actual difficulty for this block
+		hashrate: util.getReadableHashRateString(pool.options.initStats.networkHashRate)
 	};
 
     if (isValidBlock) {
