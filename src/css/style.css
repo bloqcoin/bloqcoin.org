@@ -134,6 +134,22 @@ header {
 	}
 }
 
+h1.hash-rate:after {
+	width: 0px;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: bottom;
+	-webkit-animation: ellipsis steps(4, end) 900ms infinite;
+	animation: ellipsis steps(4, end) 900ms infinite;
+	content: "\2026"; /* ascii code for the ellipsis character */
+}
+
+@keyframes ellipsis {
+	to {
+		width: 40px;
+	}
+}
+
 main {
 	max-width: 800px;
 	margin: 0 auto;

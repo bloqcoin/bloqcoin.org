@@ -38,7 +38,9 @@ function notifyFrontend(obj) {
 	jQuery('.reflow-table').reflowTable('update');
 
 	// set hash rate
-	document.querySelector('h1').innerHTML = obj.data.hashrate;
+	const hashRate = document.querySelector('h1');
+	hashRate.innerHTML = obj.data.hashrate;
+	hashRate.classList.remove('hash-rate');
 }
 
 const wss = new WebSocket(`${process.env.WSS_URI_EXTERNAL}/pool`);
