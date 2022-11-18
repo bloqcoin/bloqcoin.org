@@ -151,7 +151,7 @@ const pool = Stratum.createPool({
 	}
 }, function(ip, workerName, password, callback) { // stratum authorization function
 
-	//console.log("Authorize " + workerName + ":" + password + "@" + ip);
+	console.log("Authorize " + workerName + ":" + password + "@" + ip);
 
 	// store this workerName for payout
 	
@@ -203,32 +203,32 @@ pool.on('share', function(isValidShare, isValidBlock, data) {
     if (isValidBlock) {
 
 		obj.message = 'Block found';
-        //console.log(obj.message);
+        console.log(obj.message);
 	}
     else if (isValidShare) {
 
 		obj.message = 'Valid share submitted';
-        //console.log(obj.message);
+        console.log(obj.message);
 	}
     else if (data.blockHash) {
 
 		obj.message = 'We thought a block was found but it was rejected by the daemon';
-        //console.log(obj.message);
+        console.log(obj.message);
 	}
     else {
 
 		obj.message = 'Invalid share submitted';
-        //console.log(obj.message);
+        console.log(obj.message);
 	}
 
-    //console.log('share data: ' + JSON.stringify(data));
+    console.log('share data: ' + JSON.stringify(data));
 
 	// open socket connection to frontend
 	const socket = new WebSocket(`${process.env.WSS_URI_INTERNAL}/pool`);
 
 	socket.onopen = async (e) => {
 
-		//console.log('[open] Connection established');
+		console.log('[open] Connection established');
 
 		socket.send(JSON.stringify(obj));
 
@@ -256,14 +256,14 @@ pool.on('log', function(severity, logKey, logText) {
 
 	socket.onopen = async (e) => {
 
-		//console.log('[open] Connection established');
+		console.log('[open] Connection established');
 
 		socket.send(JSON.stringify(obj));
 
 		socket.close();
 	};
 
-	//console.log(severity + ': ' + '[' + logKey + '] ' + logText);
+	console.log(severity + ': ' + '[' + logKey + '] ' + logText);
 });
 
 pool.start();
