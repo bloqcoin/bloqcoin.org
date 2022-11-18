@@ -4,31 +4,12 @@
 		<title><%= htmlWebpackPlugin.options.title %> - Bloqcoin</title>
 	</head>
 	<body>
-		<pre>
-Bloqcoin pool can have as many miners connect as you wish. Each miner can be configured to use its own
-pool rewards address. varDiff is optional and will only be used for the ports you configure it for.
+		<header>
+			<h1>3032</h1>
+			<p>The port for miners to connect to via Stratum Protocol</p>
 
-"ports": {
-    "3032": { // The port for miners to connect to via Stratum Protocol
-        "diff": 32, // The pool difficulty for this port
-
-        // Variable difficulty is a feature that will automatically adjust difficulty for
-        // individual miners based on their hashrate in order to lower networking overhead
-        "varDiff": {
-            "minDiff": 8, // Minimum difficulty
-            "maxDiff": 512, // Network difficulty will be used if it is lower than this
-            "targetTime": 15, // Try to get 1 share per this many seconds
-            "retargetTime": 90, // Check to see if we should retarget every this many seconds
-            "variancePercent": 30 // Allow time to very this % from target without retargeting
-        }
-    },
-    "3256": { // Another port for miners to connect to, this port does not use varDiff
-        "diff": 256 // The pool difficulty
-    }
-}
-
-		cgminer -o stratum+tcp://pool.bloqcoin.org:3032 -u BLOQCOIN_ADDRESS -p x
-		</pre>
+			<pre>cgminer -o stratum+tcp://pool.bloqcoin.org:3032 -u BLOQCOIN_ADDRESS -p x</pre>
+		</header>
 
 		<%= htmlWebpackPlugin.options.partial.footer %>
 	</body>
