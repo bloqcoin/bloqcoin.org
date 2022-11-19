@@ -20,7 +20,12 @@ class Controller {
 
 		await Promise.all(peers.map(peer => {
 
-			if (peer.addr !== '127.0.0.1') {
+			if (peer.addr === '127.0.0.1') {
+
+				peer.country = 'LC';
+				peer.timezone = 'Local/Bloqcoin';
+			}
+			else {
 
 				// get country from addr
 				try {
