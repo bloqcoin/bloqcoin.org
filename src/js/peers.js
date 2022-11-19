@@ -18,8 +18,6 @@ fetch('', {
 
 	await Promise.all(json.map((peer) => {
 
-		const ping = (Math.round((peer.pingtime * 1000) * 100) / 100).toFixed(3);
-
 		const tr = jQuery('<tr>');
 		
 		jQuery('<td>', {
@@ -31,7 +29,15 @@ fetch('', {
 		}).appendTo(tr);
 
 		jQuery('<td>', {
-			text: `${ping} ms`
+			text: peer.country
+		}).appendTo(tr);
+
+		jQuery('<td>', {
+			text: peer.timezone
+		}).appendTo(tr);
+
+		jQuery('<td>', {
+			text: `${(Math.round((peer.pingtime * 1000) * 100) / 100).toFixed(3)} ms`
 		}).appendTo(tr);
 
 		jQuery('table tbody').append(tr);

@@ -1,6 +1,7 @@
 'use strict';
 
 const utils = require('../middleware/utils.js');
+const geoip = require('geoip-lite');
 
 var self;
 
@@ -15,10 +16,25 @@ class Controller {
 
 	get = async function(req, res) {
 
-		const data = await self.getPeerInfo();
+		const peers = await self.getPeerInfo();
+
+		await Promise.all(peers.map(peer => {
+
+			if (peer.addr !== '127.0.0.1') {
+
+				// get country from addr
+				try {
+
+					const geo = geoip.lookup(peer.addr.split(':')[0]);
+					peer.country = geo.country;
+					peer.timezone = geo.timezone;
+				}
+				catch {}
+			}
+		}));
 
 		// 200 OK
-		return res.status(200).json(data);
+		return res.status(200).json(peers);
 	}
 
 	getPeerInfo = function() {
