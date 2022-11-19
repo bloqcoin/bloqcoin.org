@@ -5,10 +5,16 @@
 	</head>
 	<body>
 		<header>
-			<h1>3032</h1>
-			<p>The port for miners to connect to via Stratum Protocol</p>
+			<h1>pool.bloqcoin.org:3032</h1>
+			<p>The URI for miners to connect to via Stratum Protocol</p>
 
-			<pre>cgminer -o stratum+tcp://pool.bloqcoin.org:3032 -u BLOQCOIN_ADDRESS -p x --suggest-diff 35</pre>
+			<p>Miners that require a high diff</p>
+
+			<h2>pool.bloqcoin.org:3256</h2>
+
+			<pre>cgminer -o stratum+tcp://pool.bloqcoin.org:3032 -u BLOQCOIN_ADDRESS -p x</pre>
+
+			<p>This is a nonprofit pool, all care is given but no responsibility is taken in the event of an issue with the pool</p>
 		</header>
 
 		<%= htmlWebpackPlugin.options.partial.footer %>
