@@ -20,7 +20,9 @@ class Controller {
 
 		await Promise.all(peers.map(peer => {
 
-			if (peer.addr === '127.0.0.1') {
+			const ip = peer.addr.split(':')[0];
+
+			if (ip === '127.0.0.1') {
 
 				peer.country = 'LC';
 				peer.timezone = 'Local/Bloqcoin';
@@ -30,7 +32,7 @@ class Controller {
 				// get country from addr
 				try {
 
-					const geo = geoip.lookup(peer.addr.split(':')[0]);
+					const geo = geoip.lookup(ip);
 					peer.country = geo.country;
 					peer.timezone = geo.timezone;
 				}
