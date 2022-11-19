@@ -13,9 +13,9 @@ const pool = Stratum.createPool({
 		"symbol": "BLOQ",
 		"algorithm": "sha256",
 		"chainStartTime": 1668359165,
-		"nValue": 1024, //optional - defaults to 1024
-		"rValue": 1, //optional - defaults to 1
-		"txMessages": false, //optional - defaults to false,
+		"nValue": 1024, // optional - defaults to 1024
+		"rValue": 1, // optional - defaults to 1
+		"txMessages": false, // optional - defaults to false,
 
 		/**
 		 * Magic value only required for setting up p2p block notifications. It is found in the daemon
@@ -23,12 +23,22 @@ const pool = Stratum.createPool({
 		 * For example, litecoin mainnet magic: http://git.io/Bi8YFw
 		 * And for litecoin testnet magic: http://git.io/NXBYJA
 		 */
-		"peerMagic": "f9beb4d9", //optional
-		"peerMagicTestnet": "0b110907" //optional
+		"peerMagic": "f9beb4d9", // optional
+		"peerMagicTestnet": "0b110907" // optional
 	},
 
 	// address to where block rewards are given
 	"address": process.env.REWARDS_ADDRESS,
+
+	/**
+	 * Block rewards go to the configured pool wallet address to later be paid out to miners,
+	 * except for a percentage that can go to, for examples, pool operator(s) as pool fees or
+	 * or to donations address. Addresses or hashed public keys can be used. Here is an example
+	 * of rewards going to the main pool op, a pool co-owner, and NOMP donation.
+	 */
+	"rewardRecipients": {
+		[process.env.REWARDS_ADDRESS]: 1.5 // 1.5% goes to pool op
+    },
 
 	// how often to poll RPC daemons for new blocks, in milliseconds
 	"blockRefreshInterval": 1000,
