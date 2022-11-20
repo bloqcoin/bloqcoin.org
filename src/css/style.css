@@ -62,6 +62,15 @@ p {
 	margin-top: 0;
 }
 
+a {
+	color: #0fa0ce;;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 img {
 	margin: 0 auto;
 	display: block;
