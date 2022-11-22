@@ -20,8 +20,17 @@ process.on('uncaughtException', function (err) {
  '/blocks',
  '/tx'
 ].forEach(endpoint => {
+	const bodyParser = require('body-parser');
+
+	app.use(bodyParser.urlencoded({ extended: true }));
+	app.use(bodyParser.json());
+
 	const controller = require(`./controllers${endpoint}.js`);
 	app.post(endpoint, new controller().get);
+});
+
+app.get('/tx/:TXID', (req, res) => {
+	res.sendFile('./dist/tx.html', {root: __dirname});
 });
 
 app.get('/health', (req, res) => {
