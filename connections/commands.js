@@ -7,7 +7,10 @@ const commands = module.exports.commands = [
 	// blocks
 	'getblockcount',
 	'getblockhash',
-	'getblockheader'
+	'getblockheader',
+
+	// tx
+	'gettransaction'
 ]
 
 module.exports.isCommand = function(command) {

@@ -17,7 +17,8 @@ process.on('uncaughtException', function (err) {
  */
 ['/hash-rate',
  '/peers',
- '/blocks'
+ '/blocks',
+ '/tx'
 ].forEach(endpoint => {
 	const controller = require(`./controllers${endpoint}.js`);
 	app.post(endpoint, new controller().get);
