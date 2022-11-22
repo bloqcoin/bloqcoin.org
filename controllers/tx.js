@@ -17,17 +17,17 @@ class Controller {
 
 		console.log(req);
 
-		const data = await self.getTransaction(1);
+		const data = await self.getRawTransaction(1);
 
 		// 200 OK
 		return res.status(200).json(data);
 	}
 
-	getTransaction = (txid) => {
+	getRawTransaction = (txid) => {
 
 		return new Promise((resolve, reject) => {
 
-			self.daemon.gettransaction(txid, (err, data) => {
+			self.daemon.getrawtransaction(txid, (err, data) => {
 
 				if (err) {
 

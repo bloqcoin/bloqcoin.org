@@ -10,7 +10,7 @@ const commands = module.exports.commands = [
 	'getblockheader',
 
 	// tx
-	'gettransaction'
+	'getrawtransaction'
 ]
 
 module.exports.isCommand = function(command) {
