@@ -40,7 +40,7 @@ const clients = [];
 
 wsServer.on('connection', (ws, req) => {
 
-    id = Math.random();
+    const id = Math.random();
     clients[id] = ws;
     clients.push(ws);
 
@@ -55,8 +55,6 @@ wsServer.on('connection', (ws, req) => {
 	ws.on('message', message => {
 
 		clients.forEach(function(client) {
-
-			console.log(client.id);
 
 			client.send(message);
 		});
