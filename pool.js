@@ -229,6 +229,7 @@ pool.on('share', function(isValidShare, isValidBlock, data) {
 
 	// open socket connection to frontend
 	const socket = new WebSocket(`${process.env.WSS_URI_INTERNAL}/pool`);
+	socket.binaryType = 'arraybuffer';
 
 	socket.onopen = async (e) => {
 
