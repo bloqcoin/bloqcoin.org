@@ -36,20 +36,20 @@ const wsServer = new ws.Server({
 	}
 });
 
-wsServer.on('connection', (ws, req) => {
+const clients = [];
 
-	ws.on('message', message => {
+wsServer.on('request', (request) => {
 
-		wsServer.clients.forEach(function each(client) {
+	const connection = request.accept('any-protocol', request.origin);
+	clients.push(connection);
 
-			if (client.isAlive === false) {
-	
-				client.terminate();
-			}
-			else {
+	connection.on('message', message => {
 
-				client.send(message);
-			}
+		clients.forEach(function(client) {
+
+			console.log(client);
+			
+			client.send(message);
 		});
 	});
 });
