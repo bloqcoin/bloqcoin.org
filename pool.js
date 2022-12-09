@@ -167,7 +167,7 @@ const pool = Stratum.createPool({
 });
 
 // open socket connection to frontend
-const socket = new WebSocket(`${process.env.WSS_URI_INTERNAL}/pool`);
+const socket = new WebSocket(`${process.env.WSS_URI_INTERNAL}`);
 socket.binaryType = 'arraybuffer';
 
 socket.onopen = async (e) => {
