@@ -44,23 +44,11 @@ function notifyFrontend(obj) {
 }
 
 const wss = new WebSocket(`${process.env.WSS_URI_EXTERNAL}/pool`);
+wss.binaryType = 'arraybuffer';
+
 wss.onmessage = function(e) {
 
-	if (e.data instanceof Blob) {
-
-		const reader = new FileReader();
-
-		reader.onload = () => {
-
-			notifyFrontend(JSON.parse(reader.result));
-		};
-
-		reader.readAsText(e.data);
-	}
-	else {
-
-		notifyFrontend(JSON.parse(e.data));
-	}
+	notifyFrontend(JSON.parse(e.data));
 };
 
 // get rate for Bloqcoin in EUR
