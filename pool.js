@@ -237,8 +237,11 @@ pool.on('share', function(isValidShare, isValidBlock, data) {
 	}
 
     console.log('share data: ' + JSON.stringify(data));
+
+	if (socket.readyState !== WebSocket.CLOSED) {
 	
-	socket.send(JSON.stringify(obj));
+		socket.send(JSON.stringify(obj));
+	}
 });
 
 /**

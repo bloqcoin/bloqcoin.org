@@ -43,12 +43,25 @@ function notifyFrontend(obj) {
 	hashRate.classList.remove('hash-rate');
 }
 
-const wss = new WebSocket(`${process.env.WSS_URI_EXTERNAL}`);
-wss.binaryType = 'arraybuffer';
+const socket = new WebSocket(`${process.env.WSS_URI_EXTERNAL}`);
 
-wss.onmessage = function(e) {
+socket.onmessage = function(e) {
 
-	notifyFrontend(JSON.parse(e.data));
+	if (e.data instanceof Blob) {
+
+		const reader = new FileReader();
+
+		reader.onload = () => {
+
+			notifyFrontend(JSON.parse(reader.result));
+		};
+
+		reader.readAsText(e.data);
+	}
+	else {
+
+		notifyFrontend(JSON.parse(e.data));
+	}
 };
 
 // get rate for Bloqcoin in EUR
