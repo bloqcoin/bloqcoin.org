@@ -166,6 +166,16 @@ const pool = Stratum.createPool({
 	});
 });
 
+// open socket connection to frontend
+const socket = new WebSocket(`${process.env.WSS_URI_INTERNAL}/pool`);
+socket.binaryType = 'arraybuffer';
+
+socket.onopen = async (e) => {
+
+	console.log('[open] Connection established');
+	//socket.close();
+};
+
 /*
 'data' object contains:
     job: 4, //stratum work job ID
@@ -227,18 +237,7 @@ pool.on('share', function(isValidShare, isValidBlock, data) {
 
     console.log('share data: ' + JSON.stringify(data));
 
-	// open socket connection to frontend
-	const socket = new WebSocket(`${process.env.WSS_URI}/pool`);
-	socket.binaryType = 'arraybuffer';
-
-	socket.onopen = async (e) => {
-
-		console.log('[open] Connection established');
-
-		socket.send(JSON.stringify(obj));
-
-		socket.close();
-	};
+	socket.send(JSON.stringify(obj));
 });
 
 /**

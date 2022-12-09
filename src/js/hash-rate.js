@@ -43,7 +43,7 @@ function notifyFrontend(obj) {
 	hashRate.classList.remove('hash-rate');
 }
 
-const wss = new WebSocket(`${process.env.WSS_URI}/pool`);
+const wss = new WebSocket(`${process.env.WSS_URI_EXTERNAL}/pool`);
 wss.binaryType = 'arraybuffer';
 
 wss.onmessage = function(e) {
