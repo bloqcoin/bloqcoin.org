@@ -38,17 +38,26 @@ const wsServer = new ws.Server({
 
 const clients = [];
 
-wsServer.on('request', (request) => {
+wsServer.on('connection', (ws, req) => {
 
-	const connection = request.accept('any-protocol', request.origin);
-	clients.push(connection);
+    id = Math.random();
+    clients[id] = ws;
+    clients.push(ws);
 
-	connection.on('message', message => {
+	console.log(`connection is established : ${id}`);
+
+	ws.on('close', () => {
+
+		console.log(`connection ${id} closed`);
+		delete clients[id];
+	});
+
+	ws.on('message', message => {
 
 		clients.forEach(function(client) {
 
-			console.log(client);
-			
+			console.log(client.id);
+
 			client.send(message);
 		});
 	});
