@@ -67,7 +67,7 @@ wsServer.on('connection', (ws, req) => {
 ['/hash-rate',
  '/peers',
  '/blocks',
- '/tx'
+ '/transactions'
 ].forEach(endpoint => {
 	const cors = require('cors');
 	app.use(cors());
@@ -80,8 +80,8 @@ wsServer.on('connection', (ws, req) => {
 	app.post(endpoint, new controller().get);
 });
 
-app.get('/tx/:TXID', (req, res) => {
-	res.sendFile('./dist/tx.html', {root: __dirname});
+app.get('/transactions/:TXID', (req, res) => {
+	res.sendFile('./dist/transactions.html', {root: __dirname});
 });
 
 app.get('/health', (req, res) => {

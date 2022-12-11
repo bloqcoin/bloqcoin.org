@@ -15,7 +15,7 @@ const entry = {
 	'hash-rate': path.join(__dirname, './src/js/hash-rate.js'),
 	'peers': path.join(__dirname, './src/js/peers.js'),
 	'blocks': path.join(__dirname, './src/js/blocks.js'),
-	'tx': path.join(__dirname, './src/js/tx.js'),
+	'transactions': path.join(__dirname, './src/js/transactions.js'),
 	'pool': path.join(__dirname, './src/js/pool.js')
 };
 
