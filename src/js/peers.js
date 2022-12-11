@@ -2,10 +2,22 @@
 
 import '../css/style.css';
 import '../css/table.css';
+import '../css/leaflet.css';
+import '../css/peers.css';
 
 import 'jquery-reflow-table';
+import 'leaflet';
 
-fetch('', {
+// init map of peers
+const map = L.map('map').setView([35.90657261357048, -39.84550311312221], 2);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	minZoom: 2,
+	maxZoom: 5
+}).addTo(map);
+
+// fetch peers
+fetch('/peers', {
 	method: 'POST',
 	headers: {
 		'Content-Type': 'application/json'
@@ -33,6 +45,10 @@ fetch('', {
 		}).appendTo(tr);
 
 		jQuery('<td>', {
+			text: peer.city
+		}).appendTo(tr);		
+
+		jQuery('<td>', {
 			text: peer.timezone
 		}).appendTo(tr);
 
@@ -41,6 +57,14 @@ fetch('', {
 		}).appendTo(tr);
 
 		jQuery('table tbody').append(tr);
+
+		// add peer to map
+		const circle = L.circle([peer.ll[0], peer.ll[1]], {
+			color: 'red',
+			fillColor: '#f03',
+			fillOpacity: 0.5,
+			radius: 500
+		}).addTo(map);
 	}));
 
 	jQuery('.reflow-table').reflowTable('update');

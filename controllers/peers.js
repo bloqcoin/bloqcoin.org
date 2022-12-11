@@ -34,6 +34,8 @@ class Controller {
 
 					const geo = geoip.lookup(ip);
 					peer.country = geo.country;
+					peer.city = geo.city;
+					peer.ll = geo.ll;
 					peer.timezone = geo.timezone;
 				}
 				catch {}
