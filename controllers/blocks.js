@@ -15,6 +15,14 @@ class Controller {
 
 	get = async function(req, res) {
 
+		if (req.body.block) {
+
+			const data = await self.getBlockHeader(req.body.block);
+
+			// 200 OK
+			return res.status(200).json(data);
+		}
+
 		const data = await self.getBlocks();
 
 		// 200 OK

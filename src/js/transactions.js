@@ -7,7 +7,7 @@ import 'jquery-reflow-table';
 
 const txid = new URL(location.href).pathname.split('/')[2];
 
-fetch('/tx', {
+fetch('/transactions', {
 	method: 'POST',
 	headers: {
 		'Content-Type': 'application/json'
@@ -27,9 +27,12 @@ fetch('/tx', {
 		text: json.height
 	}).appendTo(tr);
 
-	jQuery('<td>', {
-		text: json.blockhash
-	}).appendTo(tr);
+	const blockHash = jQuery('<td>').appendTo(tr);
+
+	jQuery('<a>', {
+		text: json.blockhash,
+		href: `/blocks/${json.blockhash}`
+	}).appendTo(blockHash);
 
 	jQuery('<td>', {
 		text: new Date(json.time * 1000).toLocaleDateString([], {

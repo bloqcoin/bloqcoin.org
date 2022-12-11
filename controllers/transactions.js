@@ -29,7 +29,7 @@ class Controller {
 		}
 		catch {}
 		
-		return res.status(404).send({ url: req.originalUrl + ' not found' })
+		return res.status(404).send({ url: req.originalUrl + ' not found' });
 	}
 
 	getRawTransaction = (txid) => {

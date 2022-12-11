@@ -2,7 +2,7 @@
 
 import '../css/style.css';
 
-import formatHighlight from 'json-format-highlight'
+import formatHighlight from 'json-format-highlight';
 
 const pre = document.querySelector('pre');
 

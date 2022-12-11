@@ -80,6 +80,10 @@ wsServer.on('connection', (ws, req) => {
 	app.post(endpoint, new controller().get);
 });
 
+app.get('/blocks/:BLOCK', (req, res) => {
+	res.sendFile('./dist/blocks.html', {root: __dirname});
+});
+
 app.get('/transactions/:TXID', (req, res) => {
 	res.sendFile('./dist/transactions.html', {root: __dirname});
 });
