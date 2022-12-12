@@ -167,6 +167,7 @@ const pool = Stratum.createPool({
 });
 
 // open socket connection to frontend
+/*
 const socket = new WebSocket(process.env.WSS_URI_INTERNAL);
 socket.binaryType = 'arraybuffer';
 
@@ -176,6 +177,7 @@ socket.onopen = async (e) => {
 
 	//socket.close();
 };
+*/
 
 /*
 'data' object contains:
@@ -236,12 +238,14 @@ pool.on('share', function(isValidShare, isValidBlock, data) {
         console.log(obj.message);
 	}
 
-    console.log('share data: ' + JSON.stringify(data));
+    //console.log('share data: ' + JSON.stringify(data));
 
+	/*
 	if (socket.readyState !== WebSocket.CLOSED) {
 	
 		socket.send(JSON.stringify(obj));
 	}
+	*/
 });
 
 /**
