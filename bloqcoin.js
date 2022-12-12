@@ -4,61 +4,12 @@ require('dotenv').config();
 
 const express = require('express');
 const expressStaticGzip = require('./middleware/compression.js');
-const ws = require('ws');
 const app = express();
 
 // made sure node do not quit
 process.on('uncaughtException', function (err) {
 	console.error(err);
 	console.log('Node NOT Exiting..');
-});
-
-/*-------------------------------------
-	WebSocket
----------------------------------------*/
-const wsServer = new ws.Server({
-	noServer: true,
-	perMessageDeflate: {
-		zlibDeflateOptions: {
-			chunkSize: 1024,
-			memLevel: 7,
-			level: 3,
-		},
-		zlibInflateOptions: {
-			chunkSize: 10 * 1024
-		},
-		clientNoContextTakeover: true, // Defaults to negotiated value.
-		serverNoContextTakeover: true, // Defaults to negotiated value.
-		serverMaxWindowBits: 10, // Defaults to negotiated value.
-		// Below options specified as default values.
-		concurrencyLimit: 10, // Limits zlib concurrency for perf.
-		threshold: 1024, // Size (in bytes) below which messages should not be compressed.
-	}
-});
-
-const clients = [];
-
-wsServer.on('connection', (ws, req) => {
-
-    const id = Math.random();
-    clients[id] = ws;
-    clients.push(ws);
-
-	console.log(`connection is established : ${id}`);
-
-	ws.on('close', () => {
-
-		console.log(`connection ${id} closed`);
-		delete clients[id];
-	});
-
-	ws.on('message', message => {
-
-		clients.forEach(function(client) {
-
-			client.send(message);
-		});
-	});
 });
 
 /**
@@ -107,15 +58,4 @@ app.use('*', (req, res) => {
 	});
 });
 
-// `server` is a vanilla Node.js HTTP server, so use
-// the same ws upgrade process described here:
-// https://www.npmjs.com/package/ws#multiple-servers-sharing-a-single-https-server
-const server = app.listen(process.env.PORT);
-
-server.on('upgrade', (request, socket, head) => {
-
-	wsServer.handleUpgrade(request, socket, head, socket => {
-
-		wsServer.emit('connection', socket, request);
-	});
-});
+app.listen(process.env.PORT);

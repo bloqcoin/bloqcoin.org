@@ -27,8 +27,7 @@
         "geoip-lite": "^1.4.6",
         "jquery-reflow-table": "^1.0.3",
         "json-format-highlight": "^1.0.4",
-        "leaflet": "^1.9.3",
-        "ws": "^8.11.0"
+        "leaflet": "^1.9.3"
     },
     "devDependencies": {
         "compression-webpack-plugin": "^10.0.0",
