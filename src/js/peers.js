@@ -58,13 +58,16 @@ fetch('/peers', {
 
 		jQuery('table tbody').append(tr);
 
-		// add peer to map
-		const circle = L.circle([peer.ll[0], peer.ll[1]], {
-			color: 'red',
-			fillColor: '#f03',
-			fillOpacity: 0.5,
-			radius: 500
-		}).addTo(map);
+		if (typeof peer.ll !== undefined) {
+
+			// add peer to map
+			const circle = L.circle([peer.ll[0], peer.ll[1]], {
+				color: 'red',
+				fillColor: '#f03',
+				fillOpacity: 0.5,
+				radius: 500
+			}).addTo(map);
+		}
 	}));
 
 	jQuery('.reflow-table').reflowTable('update');
