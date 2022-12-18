@@ -11,12 +11,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/bloqifi/bloqcoin.org.git"
+        "url": "git+https://github.com/bloqcoin/bloqcoin.org.git"
     },
     "author": "Kris Henriksen",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/bloqifi/bloqcoin.org/issues"
+        "url": "https://github.com/bloqcoin/bloqcoin.org/issues"
     },
     "homepage": "https://www.bloqcoin.org/",
     "dependencies": {
